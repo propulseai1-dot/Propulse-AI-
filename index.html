@@ -118,16 +118,21 @@
         .form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; font-family: inherit; outline: none; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: rgba(0, 122, 255, 0.05); }
 
-        /* --- MEDIA QUERIES (Ajusté pour logo mobile) --- */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 900px) {
-            .container { padding: 0 20px; }
+            .container { padding: 0 15px; }
             .bento-grid, .modular-pricing { grid-template-columns: 1fr; }
             .large { grid-column: span 1; }
+            nav { padding: 5px 0; }
             .logo-img { 
-                height: 60px; /* TAILLE MOBILE MISE À JOUR */
-                margin-left: 5px; 
+                height: 80px; 
+                margin-left: 0; 
+                transform: scale(1.1); 
+                transform-origin: left;
             }
-            .nav-right { gap: 10px; }
+            .nav-right { gap: 8px; }
+            .lang-selector { padding: 3px; }
+            .lang-btn { padding: 4px 6px; font-size: 10px; }
         }
     </style>
 </head>
@@ -253,7 +258,7 @@
         es: {
             navStart: "EMPEZAR →", heroBadge: "SISTEMA DE CRECIMIENTO AUTOMATIZADO",
             heroTitle: "La agencia está cerrada.<br><span style='color: #007AFF'>La IA está trabajando.</span>",
-            heroDesc: "No pierda ningún cliente: nuestra IA responde al instante por Email y WhatsApp, 24/7.",
+            heroDesc: "No pierda ningún cliente: nuestra IA responde al instante por Email et WhatsApp, 24/7.",
             heroBtn: "CONFIGURAR MI SISTEMA", bento1H: "WhatsApp Inteligente", bento1P: "Despliegue de GPT-4o. El bot reconoce a sus clientes y gestiona objeciones.",
             bento2H: "Email Autopilot", bento2P: "Clasificación inteligente y redacción de respuestas.",
             bento3H: "Silence Bot", bento3P: "La IA se detiene en cuanto usted retoma el control manual.",
@@ -262,7 +267,7 @@
             monthlyPrice: "+ 199€", moSuffix: " / mes", priceMaint: "Mantenimiento y actualizaciones incluidas.",
             priceExtra: "* Sin incluir gastos de terceros (Make, OpenAI).", priceBtn: "INICIAR AUTOMATIZACIÓN",
             inclTitle: "SISTEMA INCLUYE:", incl1: "Email Autopilot", incl2: "IA WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
-            inclStatus: "INCLUIDO", modH: "Configuración IA", modP: "Le contactaremos en menos de 24h.", lName: "Nombre complet", lMail: "Email professionnel", lBiz: "Su Negocio", modBtn: "ENVIAR",
+            inclStatus: "INCLUIDO", modH: "Configuración IA", modP: "Le contactaremos en menos de 24h.", lName: "Nombre completo", lMail: "Email professionnel", lBiz: "Su Negocio", modBtn: "ENVIAR",
             success: "✓ ¡Enviado con éxito!", loading: "ENVIANDO...", error: "Error, reintente."
         }
     };
