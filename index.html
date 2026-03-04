@@ -150,7 +150,7 @@
         </a>
         <div class="nav-right">
             <div class="lang-selector">
-                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
                 <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
                 <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
             </div>
@@ -179,7 +179,7 @@
         <div class="bento-item">
             <div class="icon-wrapper"><i data-lucide="user-minus"></i></div>
             <h3 id="bento3-h">Silence Bot</h3>
-            <p id="bento3-p">The AI steps back as soon as you take manual control.</p>
+            <p id="bento3-p">The AI steps back as soon as you take control and only resumes after 2 hours of inactivity.</p>
         </div>
         <div class="bento-item large">
             <div class="icon-wrapper"><i data-lucide="database"></i></div>
@@ -240,7 +240,7 @@
             heroBtn: "CONFIGURE MY SYSTEM", 
             bento1H: "Automated Email System", bento1P: "100% automated replies. The AI sorts your emails and responds instantly based on your business data.",
             bento2H: "WhatsApp Intelligence", bento2P: "GPT-4o deployment. The bot recognizes your clients and handles complex objections in autonomy.",
-            bento3H: "Silence Bot", bento3P: "The AI steps back as soon as you take manual control.",
+            bento3H: "Silence Bot", bento3P: "The AI steps back as soon as you take control and only resumes after 2 hours of inactivity.",
             bento4H: "Data Centric CRM", bento4P: "Ultra-precise lead tracking and scoring in a secure Data Store.",
             priceBadge: "BETA OFFER — 5 SLOTS", mainPrice: "$530", priceSetup: "Setup Fee (One-time)",
             monthlyPrice: "+ $215", moSuffix: " / mo", priceMaint: "Maintenance & AI Updates included.",
@@ -256,7 +256,7 @@
             heroBtn: "CONFIGURER MON SYSTÈME", 
             bento1H: "Email Automatisé", bento1P: "Réponses 100% automatisées. L'IA trie vos messages et répond instantanément selon vos données.",
             bento2H: "WhatsApp Intelligence", bento2P: "Déploiement de GPT-4o. Le bot reconnaît vos clients et gère les objections complexes.",
-            bento3H: "Silence Bot", bento3P: "L'IA s'efface dès que vous reprenez la main manuellement.",
+            bento3H: "Silence Bot", bento3P: "L'IA s'efface dès que vous reprenez la main et ne se réactive qu'après 2h d'inactivité.",
             bento4H: "Data Centric CRM", bento4P: "Tracking et scoring de leads ultra-précis centralisé.",
             priceBadge: "OFFRE BÊTA — 5 PLACES", mainPrice: "490€", priceSetup: "Mise en place (Unique)",
             monthlyPrice: "+ 199€", moSuffix: " / mois", priceMaint: "Maintenance & Mises à jour IA incluses.",
@@ -272,7 +272,7 @@
             heroBtn: "CONFIGURAR MI SISTEMA", 
             bento1H: "Email Automatizado", bento1P: "Respuestas 100% automatizadas. La IA clasifica y responde al instante según sus datos.",
             bento2H: "WhatsApp Inteligente", bento2P: "Despliegue de GPT-4o. El bot reconoce a sus clientes y gestiona objeciones complejas.",
-            bento3H: "Silence Bot", bento3P: "La IA se retira en cuanto usted toma el control manual.",
+            bento3H: "Silence Bot", bento3P: "La IA se retira en cuanto usted toma el control manual y solo se reactiva tras 2h de inactividad.",
             bento4H: "CRM de Datos", bento4P: "Seguimiento y calificación de leads ultra-precisos.",
             priceBadge: "OFERTA BETA — 5 PLAZAS", mainPrice: "$530", priceSetup: "Gastos de configuración",
             monthlyPrice: "+ $215", moSuffix: " / mes", priceMaint: "Mantenimiento y actualizaciones de IA incluidos.",
@@ -288,7 +288,9 @@
     function setLang(lang) {
         currentLang = lang;
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById('btn-' + lang).classList.add('active');
+        const btn = document.getElementById('btn-' + lang);
+        if(btn) btn.classList.add('active');
+        
         const t = translations[lang];
         
         document.getElementById('nav-start').innerText = t.navStart;
@@ -324,6 +326,18 @@
         document.getElementById('l-biz').innerText = t.lBiz;
         document.getElementById('mod-btn').innerText = t.modBtn;
     }
+
+    // AUTO-DETECTION DE LA LANGUE DU NAVIGATEUR
+    window.addEventListener('DOMContentLoaded', () => {
+        const userLang = navigator.language || navigator.userLanguage; 
+        const shortLang = userLang.split('-')[0]; // Récupère 'fr', 'en' ou 'es'
+        
+        if (translations[shortLang]) {
+            setLang(shortLang);
+        } else {
+            setLang('en'); // Par défaut si la langue n'est pas gérée
+        }
+    });
 
     const modal = document.getElementById('modal');
     function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
