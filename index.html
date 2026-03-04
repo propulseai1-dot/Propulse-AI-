@@ -51,7 +51,7 @@
             width: auto; 
             display: block;
             margin-left: 15px;
-            margin-top: 2px; /* Micro-descente */
+            margin-top: 2px;
         }
 
         /* --- BOUTONS --- */
@@ -119,20 +119,18 @@
         .form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; font-family: inherit; outline: none; }
         .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: rgba(0, 122, 255, 0.05); }
 
-        /* --- MEDIA QUERIES (Logo Fix Mobile) --- */
+        /* --- MEDIA QUERIES --- */
         @media (max-width: 900px) {
             .container { padding: 0 15px; }
             .bento-grid, .modular-pricing { grid-template-columns: 1fr; }
             .large { grid-column: span 1; }
-            
             nav { padding: 8px 0; }
-            
             .logo-img { 
-                height: 30px; /* Grand mais maîtrisé */
-                max-width: 140px; /* Sécurité pour ne pas tout écraser */
+                height: 30px; 
+                max-width: 140px; 
                 object-fit: contain;
                 margin-left: 0; 
-                margin-top: 2px; /* Micro-descente maintenue sur mobile */
+                margin-top: 2px; 
                 transform: scale(1.05);
                 transform-origin: left;
             }
@@ -169,14 +167,14 @@
 
     <div class="bento-grid">
         <div class="bento-item large">
-            <div class="icon-wrapper"><i data-lucide="message-square"></i></div>
-            <h3 id="bento1-h">WhatsApp Intelligence</h3>
-            <p id="bento1-p">GPT-4o deployment. The bot recognizes your clients and handles complex objections in autonomy.</p>
+            <div class="icon-wrapper"><i data-lucide="mail"></i></div>
+            <h3 id="bento1-h">Automated Email System</h3>
+            <p id="bento1-p">100% automated replies. The AI sorts your emails and responds instantly based on your business data.</p>
         </div>
         <div class="bento-item">
-            <div class="icon-wrapper"><i data-lucide="mail"></i></div>
-            <h3 id="bento2-h">Email Autopilot</h3>
-            <p id="bento2-p">Smart sorting and personalized reply drafting synced with your knowledge base.</p>
+            <div class="icon-wrapper"><i data-lucide="message-square"></i></div>
+            <h3 id="bento2-h">WhatsApp Intelligence</h3>
+            <p id="bento2-p">GPT-4o deployment. The bot recognizes your clients and handles complex objections in autonomy.</p>
         </div>
         <div class="bento-item">
             <div class="icon-wrapper"><i data-lucide="user-minus"></i></div>
@@ -204,7 +202,7 @@
         </div>
         <div style="background: rgba(255,255,255,0.03); border-radius: 25px; padding: 35px; border: 1px solid var(--border);">
             <div style="font-weight: 700; margin-bottom: 25px; font-size: 15px;" id="incl-title">SYSTEM INCLUDES:</div>
-            <div class="module-row"><div><b id="incl1">Email Autopilot</b></div><div class="tag-incl">INCLUDED</div></div>
+            <div class="module-row"><div><b id="incl1">Automated Email</b></div><div class="tag-incl">INCLUDED</div></div>
             <div class="module-row"><div><b id="incl2">WhatsApp AI</b></div><div class="tag-incl">INCLUDED</div></div>
             <div class="module-row"><div><b id="incl3">Data CRM</b></div><div class="tag-incl">INCLUDED</div></div>
             <div class="module-row"><div><b id="incl4">Silence Bot</b></div><div class="tag-incl">INCLUDED</div></div>
@@ -233,19 +231,21 @@
 
 <script>
     lucide.createIcons();
+    
     const translations = {
         en: {
             navStart: "START →", heroBadge: "SMART AUTOMATION SYSTEMS",
             heroTitle: "The Agency is closed.<br><span style='color: #007AFF'>The AI is working.</span>",
             heroDesc: "Never lose a lead: our AI responds instantly via Email and WhatsApp, 24/7.",
-            heroBtn: "CONFIGURE MY SYSTEM", bento1H: "WhatsApp Intelligence", bento1P: "GPT-4o deployment. The bot recognizes your clients and handles complex objections.",
-            bento2H: "Email Autopilot", bento2P: "Smart sorting and personalized reply drafting.",
+            heroBtn: "CONFIGURE MY SYSTEM", 
+            bento1H: "Automated Email System", bento1P: "100% automated replies. The AI sorts your emails and responds instantly based on your business data.",
+            bento2H: "WhatsApp Intelligence", bento2P: "GPT-4o deployment. The bot recognizes your clients and handles complex objections in autonomy.",
             bento3H: "Silence Bot", bento3P: "The AI steps back as soon as you take manual control.",
             bento4H: "Data Centric CRM", bento4P: "Ultra-precise lead tracking and scoring in a secure Data Store.",
             priceBadge: "BETA OFFER — 5 SLOTS", mainPrice: "$530", priceSetup: "Setup Fee (One-time)",
             monthlyPrice: "+ $215", moSuffix: " / mo", priceMaint: "Maintenance & AI Updates included.",
             priceExtra: "* Excluding third-party fees (Make, OpenAI).", priceBtn: "START AUTOMATION",
-            inclTitle: "SYSTEM INCLUDES:", incl1: "Email Autopilot", incl2: "WhatsApp AI", incl3: "Data CRM", incl4: "Silence Bot",
+            inclTitle: "SYSTEM INCLUDES:", incl1: "Automated Email", incl2: "WhatsApp AI", incl3: "Data CRM", incl4: "Silence Bot",
             inclStatus: "INCLUDED", modH: "AI Configuration", modP: "We will contact you within 24h.", lName: "Full Name", lMail: "Work Email", lBiz: "Your Business", modBtn: "SEND",
             success: "✓ Sent successfully!", loading: "SENDING...", error: "Error, try again."
         },
@@ -253,31 +253,33 @@
             navStart: "DÉMARRER →", heroBadge: "SMART AUTOMATION SYSTEMS",
             heroTitle: "L'Agence est fermée.<br><span style='color: #007AFF'>L'IA travaille.</span>",
             heroDesc: "Ne perdez plus aucun prospect : notre IA répond instantanément par Email et WhatsApp, 24h/24.",
-            heroBtn: "CONFIGURER MON SYSTÈME", bento1H: "WhatsApp Intelligence", bento1P: "Déploiement de GPT-4o. Le bot reconnaît vos clients et gère les objections complexes.",
-            bento2H: "Email Autopilot", bento2P: "Tri intelligent et rédaction de réponses personnalisées.",
+            heroBtn: "CONFIGURER MON SYSTÈME", 
+            bento1H: "Email Automatisé", bento1P: "Réponses 100% automatisées. L'IA trie vos messages et répond instantanément selon vos données.",
+            bento2H: "WhatsApp Intelligence", bento2P: "Déploiement de GPT-4o. Le bot reconnaît vos clients et gère les objections complexes.",
             bento3H: "Silence Bot", bento3P: "L'IA s'efface dès que vous reprenez la main manuellement.",
             bento4H: "Data Centric CRM", bento4P: "Tracking et scoring de leads ultra-précis centralisé.",
             priceBadge: "OFFRE BÊTA — 5 PLACES", mainPrice: "490€", priceSetup: "Mise en place (Unique)",
             monthlyPrice: "+ 199€", moSuffix: " / mois", priceMaint: "Maintenance & Mises à jour IA incluses.",
             priceExtra: "* Hors frais tiers (Make, OpenAI).", priceBtn: "LANCER L'AUTOMATISATION",
-            inclTitle: "SYSTÈME INCLUS :", incl1: "Email Autopilot", incl2: "IA WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
+            inclTitle: "SYSTÈME INCLUS :", incl1: "Email Automatisé", incl2: "IA WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
             inclStatus: "INCLUS", modH: "Configuration IA", modP: "Nous vous recontactons sous 24h.", lName: "Nom complet", lMail: "Email professionnel", lBiz: "Votre Business", modBtn: "ENVOYER",
             success: "✓ Envoyé avec succès !", loading: "ENVOI...", error: "Erreur, réessayez."
         },
         es: {
-            navStart: "EMPEZAR →", heroBadge: "SMART AUTOMATION SYSTEMS",
+            navStart: "EMPEZAR →", heroBadge: "SISTEMAS DE AUTOMATIZACIÓN",
             heroTitle: "La agencia está cerrada.<br><span style='color: #007AFF'>La IA está trabajando.</span>",
-            heroDesc: "No pierda aucun cliente: notre IA répond instantanément par Email et WhatsApp, 24/7.",
-            heroBtn: "CONFIGURER MON SYSTÈME", bento1H: "WhatsApp Intelligence", bento1P: "GPT-4o deployment. Le bot reconnaît vos clients et gère les objections complexes.",
-            bento2H: "Email Autopilot", bento2P: "Tri intelligent et rédaction de réponses personnalisées.",
-            bento3H: "Silence Bot", bento3P: "L'IA s'efface dès que vous reprenez la main manuellement.",
-            bento4H: "Data Centric CRM", bento4P: "Tracking et scoring de leads ultra-précis centralisé.",
-            priceBadge: "BETA OFFER — 5 SLOTS", mainPrice: "$530", priceSetup: "Setup Fee (One-time)",
-            monthlyPrice: "+ $215", moSuffix: " / mo", priceMaint: "Maintenance & AI Updates included.",
-            priceExtra: "* Excluding third-party fees (Make, OpenAI).", priceBtn: "START AUTOMATION",
-            inclTitle: "SYSTEM INCLUDES:", incl1: "Email Autopilot", incl2: "WhatsApp AI", incl3: "Data CRM", incl4: "Silence Bot",
-            inclStatus: "INCLUDED", modH: "AI Configuration", modP: "We will contact you within 24h.", lName: "Full Name", lMail: "Work Email", lBiz: "Your Business", modBtn: "SEND",
-            success: "✓ Sent successfully!", loading: "SENDING...", error: "Error, try again."
+            heroDesc: "No pierda ni un solo cliente: nuestra IA responde al instante por Email y WhatsApp, 24/7.",
+            heroBtn: "CONFIGURAR MI SISTEMA", 
+            bento1H: "Email Automatizado", bento1P: "Respuestas 100% automatizadas. La IA clasifica y responde al instante según sus datos.",
+            bento2H: "WhatsApp Inteligente", bento2P: "Despliegue de GPT-4o. El bot reconoce a sus clientes y gestiona objeciones complejas.",
+            bento3H: "Silence Bot", bento3P: "La IA se retira en cuanto usted toma el control manual.",
+            bento4H: "CRM de Datos", bento4P: "Seguimiento y calificación de leads ultra-precisos.",
+            priceBadge: "OFERTA BETA — 5 PLAZAS", mainPrice: "$530", priceSetup: "Gastos de configuración",
+            monthlyPrice: "+ $215", moSuffix: " / mes", priceMaint: "Mantenimiento y actualizaciones de IA incluidos.",
+            priceExtra: "* Excluyendo tarifas de terceros (Make, OpenAI).", priceBtn: "INICIAR AUTOMATIZACIÓN",
+            inclTitle: "EL SISTEMA INCLUYE:", incl1: "Email Automatizado", incl2: "IA de WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
+            inclStatus: "INCLUIDO", modH: "Configuración de IA", modP: "Nos pondremos en contacto en menos de 24h.", lName: "Nombre completo", lMail: "Correo profesional", lBiz: "Su negocio", modBtn: "ENVIAR",
+            success: "✓ ¡Enviado con éxito!", loading: "ENVIANDO...", error: "Error, inténtelo de nuevo."
         }
     };
 
@@ -288,6 +290,7 @@
         document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
         document.getElementById('btn-' + lang).classList.add('active');
         const t = translations[lang];
+        
         document.getElementById('nav-start').innerText = t.navStart;
         document.getElementById('hero-badge').innerText = t.heroBadge;
         document.getElementById('hero-title').innerHTML = t.heroTitle;
