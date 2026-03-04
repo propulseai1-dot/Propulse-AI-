@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
     <title>Propulse AI | Systems Architects</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -10,13 +13,12 @@
         :root {
             --bg: #030305;
             --primary: #007AFF;
-            --primary-glow: rgba(0, 122, 255, 0.3);
             --card-bg: rgba(255, 255, 255, 0.02);
             --border: rgba(255, 255, 255, 0.08);
             --text-dim: #9494a3;
         }
 
-        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+        html { scroll-behavior: smooth; }
         * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 
         body {
@@ -25,89 +27,102 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 122, 255, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 122, 255, 0.05) 0%, transparent 40%);
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 122, 255, 0.05) 0%, transparent 40%);
         }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
-
-        .lucide { width: 28px; height: 28px; stroke-width: 2px; }
+        .lucide { width: 22px; height: 22px; stroke-width: 2px; transition: all 0.4s ease; }
 
         /* --- NAVIGATION --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 25px 0; border-bottom: 1px solid var(--border);
+            padding: 10px 0; border-bottom: 1px solid var(--border);
             position: sticky; top: 0; background: rgba(3, 3, 5, 0.8);
             backdrop-filter: blur(15px); z-index: 1000;
         }
-        .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; background: linear-gradient(to right, #fff, #777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; gap: 30px; font-size: 14px; }
-        .nav-links a { color: var(--text-dim); text-decoration: none; font-weight: 500; }
-        .nav-links a:hover { color: white; }
+        .nav-right { display: flex; align-items: center; gap: 25px; }
+        .lang-selector { display: flex; gap: 10px; background: rgba(255,255,255,0.05); padding: 5px; border-radius: 10px; border: 1px solid var(--border); }
+        .lang-btn { background: none; border: none; color: var(--text-dim); font-size: 11px; font-weight: 700; cursor: pointer; padding: 5px 8px; border-radius: 6px; }
+        .lang-btn.active { background: var(--primary); color: white; }
+
+        .logo-link { display: block; line-height: 0; text-decoration: none; }
+        .logo-img {
+            height: 70px; 
+            width: auto; 
+            display: block;
+            margin-left: 15px;
+        }
+
+        /* --- BOUTONS --- */
+        .btn-glow {
+            background: white; color: black; padding: 16px 32px; border-radius: 14px;
+            font-weight: 700; font-size: 15px; border: none; cursor: pointer; 
+            display: inline-block; text-align: center; font-family: inherit; text-decoration: none;
+        }
+        .btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,122,255,0.2); background: #f0f0f0; }
 
         /* --- HERO --- */
-        .hero { text-align: center; padding: 120px 0 80px; position: relative; }
-        .badge-ai {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-            padding: 6px 15px; border-radius: 50px; font-size: 12px; font-weight: 600;
-            color: var(--primary); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 30px;
-        }
-        h1 { font-size: clamp(40px, 8vw, 80px); font-weight: 800; line-height: 0.95; margin: 0 0 30px; letter-spacing: -4px; }
-        .hero p { font-size: 20px; color: var(--text-dim); max-width: 700px; margin: 0 auto 50px; line-height: 1.5; }
+        .hero { text-align: center; padding: 100px 0 60px; }
+        .badge-ai { border: 1px solid var(--border); padding: 6px 15px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; margin-bottom: 25px; }
+        h1 { font-size: clamp(38px, 7vw, 75px); font-weight: 800; line-height: 1.1; margin: 0 0 25px; letter-spacing: -3px; }
+        .hero p { font-size: 19px; color: var(--text-dim); max-width: 650px; margin: 0 auto 40px; }
 
-        /* --- BENTO GRID --- */
-        .bento-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: minmax(280px, auto); gap: 20px; margin-bottom: 100px;
+        /* --- BENTO GRID & ANIMATIONS --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 80px; }
+        .bento-item { 
+            background: var(--card-bg); border: 1px solid var(--border); 
+            border-radius: 30px; padding: 40px; padding-top: 130px; 
+            position: relative; overflow: hidden;
+            cursor: default;
         }
-        .bento-item {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 35px; padding: 40px; padding-top: 140px; 
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
+        .bento-item:hover { 
+            background: rgba(255, 255, 255, 0.04); 
+            border-color: rgba(0, 122, 255, 0.3);
+            transform: translateY(-5px);
         }
-        .icon-wrapper {
-            position: absolute; top: 40px; left: 40px; width: 70px; height: 70px;
-            background: linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(0, 122, 255, 0.05) 100%);
-            border: 1px solid rgba(0, 122, 255, 0.3); border-radius: 20px;
-            display: flex; align-items: center; justify-content: center; color: var(--primary);
+
+        .icon-wrapper { 
+            position: absolute; top: 40px; left: 40px; 
+            width: 60px; height: 60px; 
+            background: rgba(0, 122, 255, 0.1); 
+            border: 1px solid rgba(0, 122, 255, 0.2); 
+            border-radius: 18px; display: flex; align-items: center; 
+            justify-content: center; color: var(--primary); 
+            transition: all 0.4s ease;
         }
-        .bento-item h3 { font-size: 22px; margin: 0 0 12px; font-weight: 700; }
-        .bento-item p { font-size: 15px; color: var(--text-dim); line-height: 1.6; }
+        
+        .bento-item:hover .icon-wrapper { 
+            background: var(--primary); 
+            color: white; 
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .bento-item h3 { font-size: 20px; margin: 0 0 10px; font-weight: 700; }
+        .bento-item p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin: 0; }
         .large { grid-column: span 2; }
-        .tall { grid-row: span 2; }
 
         /* --- PRICING --- */
-        .modular-pricing {
-            max-width: 1000px; margin: 50px auto 100px;
-            display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px;
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 40px; padding: 50px;
-        }
-        .module-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--border); }
-        .module-row:last-child { border-bottom: none; }
-        
-        .btn-glow {
-            background: white; color: black; padding: 18px 45px; border-radius: 15px;
-            font-weight: 800; text-decoration: none; font-size: 16px;
-            display: inline-block; text-align: center; border: none; cursor: pointer;
-        }
+        .modular-pricing { display: grid; grid-template-columns: 1fr 1.2fr; gap: 30px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 35px; padding: 45px; margin-bottom: 80px; }
+        .module-row { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--border); font-size: 14px; align-items: center; }
+        .tag-incl { color: var(--primary); font-weight: 800; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* --- FOOTER --- */
-        footer {
-            text-align: center; padding: 60px 0; border-top: 1px solid var(--border);
-            color: var(--text-dim); font-size: 13px; margin-top: 50px;
-        }
+        /* --- MODAL --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; z-index: 2000; transition: opacity 0.3s ease; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content { background: #0a0a0c; border: 1px solid var(--border); width: 90%; max-width: 450px; padding: 40px; border-radius: 25px; position: relative; transform: translateY(20px); }
+        .modal-overlay.active .modal-content { transform: translateY(0); }
+        .close-modal { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--text-dim); cursor: pointer; }
 
-        /* --- MOBILE --- */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 10px; color: var(--text-dim); margin-bottom: 8px; font-weight: 800; text-transform: uppercase; }
+        .form-group input, .form-group textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid var(--border); padding: 14px; border-radius: 12px; color: white; font-family: inherit; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); background: rgba(0, 122, 255, 0.05); }
+
         @media (max-width: 900px) {
             .container { padding: 0 20px; }
-            .bento-grid { grid-template-columns: 1fr; }
-            .large, .tall { grid-column: span 1; grid-row: span 1; }
-            .modular-pricing { grid-template-columns: 1fr; padding: 30px 20px; }
-            h1 { font-size: 42px; letter-spacing: -2px; }
-            .nav-links { display: none; }
-            .bento-item { padding-top: 130px; }
+            .bento-grid, .modular-pricing { grid-template-columns: 1fr; }
+            .large { grid-column: span 1; }
+            .logo-img { height: 45px; margin-left: 0; }
         }
     </style>
 </head>
@@ -115,81 +130,226 @@
 
 <div class="container">
     <nav>
-        <div class="logo">PROPULSE AI</div>
-        <div class="nav-links">
-            <a href="#automations">Automations</a>
-            <a href="#pricing">Pricing</a>
+        <a href="#" class="logo-link"><img src="logo.png" alt="Propulse AI Logo" class="logo-img"></a>
+        <div class="nav-right">
+            <div class="lang-selector">
+                <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+                <button class="lang-btn" id="btn-fr" onclick="setLang('fr')">FR</button>
+                <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+            </div>
+            <button onclick="openModal()" style="font-weight: 700; font-size: 13px; color: var(--primary); background:none; border:none; cursor:pointer;" id="nav-start">START →</button>
         </div>
-        <div style="font-weight: 700; font-size: 14px; color: var(--primary);">DÉMARRER →</div>
     </nav>
 
     <header class="hero">
-        <div class="badge-ai"><span>●</span> SYSTÈME DE CROISSANCE AUTOMATISÉ</div>
-        <h1>L'Agence est fermée.<br><span style="color: var(--primary)">L'IA travaille.</span></h1>
-        <p>Ne perdez plus aucun prospect : notre IA répond instantanément par Email et WhatsApp, 24h/24.</p>
-        <a href="#pricing" class="btn-glow">CONFIGURER MON SYSTÈME</a>
+        <div class="badge-ai"><span>●</span> <span id="hero-badge">AUTOMATED GROWTH SYSTEM</span></div>
+        <h1 id="hero-title">The Agency is closed.<br><span style="color: var(--primary)">The AI is working.</span></h1>
+        <p id="hero-desc">Never lose a lead: our AI responds instantly via Email and WhatsApp, 24/7.</p>
+        <button onclick="openModal()" class="btn-glow" id="hero-btn">CONFIGURE MY SYSTEM</button>
     </header>
 
-    <div class="bento-grid" id="automations">
+    <div class="bento-grid">
         <div class="bento-item large">
             <div class="icon-wrapper"><i data-lucide="message-square"></i></div>
-            <h3>WhatsApp Intelligence</h3>
-            <p>Déploiement de GPT-4o. Le bot reconnaît vos clients et gère les objections complexes en autonomie.</p>
+            <h3 id="bento1-h">WhatsApp Intelligence</h3>
+            <p id="bento1-p">GPT-4o deployment. The bot recognizes your clients and handles complex objections in autonomy.</p>
         </div>
-        <div class="bento-item tall">
+        <div class="bento-item">
             <div class="icon-wrapper"><i data-lucide="mail"></i></div>
-            <h3>Email Autopilot</h3>
-            <p>Tri intelligent et rédaction de réponses personnalisées synchronisées avec votre base de connaissance.</p>
+            <h3 id="bento2-h">Email Autopilot</h3>
+            <p id="bento2-p">Smart sorting and personalized reply drafting synced with your knowledge base.</p>
         </div>
         <div class="bento-item">
             <div class="icon-wrapper"><i data-lucide="user-minus"></i></div>
-            <h3>Silence Bot Hybrid</h3>
-            <p>L'IA détecte votre présence et s'efface dès que vous reprenez la main manuellement.</p>
+            <h3 id="bento3-h">Silence Bot</h3>
+            <p id="bento3-p">The AI steps back as soon as you take manual control.</p>
         </div>
-        <div class="bento-item">
+        <div class="bento-item large">
             <div class="icon-wrapper"><i data-lucide="database"></i></div>
-            <h3>Data Centric CRM</h3>
-            <p>Tracking et scoring de leads ultra-précis centralisé dans un Data Store sécurisé.</p>
+            <h3 id="bento4-h">Data Centric CRM</h3>
+            <p id="bento4-p">Ultra-precise lead tracking and scoring in a secure Data Store.</p>
         </div>
     </div>
 
-<div class="modular-pricing" id="pricing">
+    <div class="modular-pricing" id="pricing">
         <div>
-            <div style="color: var(--primary); font-weight: 800; font-size: 12px; margin-bottom: 10px;">OFFRE BÊTA — 5 PLACES</div>
-            <div style="font-size: 56px; font-weight: 800;">490€</div>
-            <div style="font-size: 14px; color: var(--text-dim); margin-bottom: 25px;">Mise en place (Unique)</div>
-            
+            <div style="color: var(--primary); font-weight: 800; font-size: 11px; margin-bottom: 10px;" id="price-badge">BETA OFFER — 5 SLOTS</div>
+            <div style="font-size: 52px; font-weight: 800;" id="main-price">$530</div>
+            <div style="font-size: 13px; color: var(--text-dim); margin-bottom: 25px;" id="price-setup">Setup Fee (One-time)</div>
             <div style="background: rgba(0, 122, 255, 0.1); border: 1px solid var(--primary); padding: 20px; border-radius: 15px; margin-bottom: 15px;">
-                <div style="font-weight: 800; font-size: 22px;">+ 199€<span style="font-size: 14px; font-weight: 400; color: var(--text-dim);"> / mois</span></div>
-                <div style="font-size: 12px; color: var(--text-dim); margin-top: 6px;">Maintenance & Mises à jour IA incluses.</div>
+                <div style="font-weight: 800; font-size: 20px;" id="monthly-price-container">+ $215<span style="font-size: 13px; font-weight: 400; color: var(--text-dim);" id="mo-suffix"> / mo</span></div>
+                <div style="font-size: 11px; color: var(--text-dim); margin-top: 6px;" id="price-maint">Maintenance & AI Updates included.</div>
             </div>
-            
-            <div style="font-size: 11px; color: var(--text-dim); margin-bottom: 30px; line-height: 1.4; padding: 0 5px;">
-                * Hors frais d'abonnements tiers (Make, OpenAI, WhatsApp API) selon votre consommation réelle.
-            </div>
-
-            <a href="#" class="btn-glow" style="width: 100%;">LANCER L'AUTOMATISATION</a>
+            <div style="font-size: 10px; color: var(--text-dim); margin-bottom: 30px;" id="price-extra">* Excluding third-party fees (Make, OpenAI).</div>
+            <button onclick="openModal()" class="btn-glow" style="width:100%" id="price-btn">START AUTOMATION</button>
         </div>
-
         <div style="background: rgba(255,255,255,0.03); border-radius: 25px; padding: 35px; border: 1px solid var(--border);">
-            <div style="font-weight: 700; margin-bottom: 25px; font-size: 16px;">SYSTÈME INCLUS :</div>
-            <div class="module-row"><div><b>Email Autopilot</b></div><div style="color: var(--primary);">INCLUS</div></div>
-            <div class="module-row"><div><b>IA WhatsApp</b></div><div style="color: var(--primary);">INCLUS</div></div>
-            <div class="module-row"><div><b>Data CRM</b></div><div style="color: var(--primary);">INCLUS</div></div>
-            <div class="module-row"><div><b>Silence Bot</b></div><div style="color: var(--primary);">INCLUS</div></div>
-            <div class="module-row"><div><b>Support 7j/7</b></div><div style="color: var(--primary);">INCLUS</div></div>
+            <div style="font-weight: 700; margin-bottom: 25px; font-size: 15px;" id="incl-title">SYSTEM INCLUDES:</div>
+            <div class="module-row"><div><b id="incl1">Email Autopilot</b></div><div class="tag-incl">INCLUDED</div></div>
+            <div class="module-row"><div><b id="incl2">WhatsApp AI</b></div><div class="tag-incl">INCLUDED</div></div>
+            <div class="module-row"><div><b id="incl3">Data CRM</b></div><div class="tag-incl">INCLUDED</div></div>
+            <div class="module-row"><div><b id="incl4">Silence Bot</b></div><div class="tag-incl">INCLUDED</div></div>
         </div>
     </div>
 
-    <footer>
-        <div class="logo" style="margin-bottom: 15px; font-size: 16px;">PROPULSE AI</div>
-        <p>© 2026 Propulse AI Tech. Tous droits réservés.</p>
+    <footer style="text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
+        <p>© 2026 Propulse AI Tech. All rights reserved.</p>
     </footer>
+</div>
+
+<div class="modal-overlay" id="modal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()"><i data-lucide="x"></i></button>
+        <h2 style="margin-top: 0; margin-bottom: 10px;" id="mod-h">AI Configuration</h2>
+        <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 25px;" id="mod-p">We will contact you within 24h.</p>
+        <form id="contact-form" action="https://formspree.io/f/xdalqewo" method="POST">
+            <div class="form-group"><label id="l-name">Full Name</label><input type="text" name="name" required></div>
+            <div class="form-group"><label id="l-mail">Work Email</label><input type="email" name="email" required></div>
+            <div class="form-group"><label id="l-biz">Your Business</label><textarea name="business" rows="3"></textarea></div>
+            <button type="submit" class="btn-glow" style="width: 100%;" id="mod-btn">SEND</button>
+            <p id="form-status" style="display:none; color: var(--primary); font-size: 13px; margin-top: 15px; text-align: center; font-weight: 700;"></p>
+        </form>
+    </div>
 </div>
 
 <script>
     lucide.createIcons();
-</script>
+    const translations = {
+        en: {
+            navStart: "START →", heroBadge: "AUTOMATED GROWTH SYSTEM",
+            heroTitle: "The Agency is closed.<br><span style='color: #007AFF'>The AI is working.</span>",
+            heroDesc: "Never lose a lead: our AI responds instantly via Email and WhatsApp, 24/7.",
+            heroBtn: "CONFIGURE MY SYSTEM", bento1H: "WhatsApp Intelligence", bento1P: "GPT-4o deployment. The bot recognizes your clients and handles complex objections.",
+            bento2H: "Email Autopilot", bento2P: "Smart sorting and personalized reply drafting.",
+            bento3H: "Silence Bot", bento3P: "The AI steps back as soon as you take manual control.",
+            bento4H: "Data Centric CRM", bento4P: "Ultra-precise lead tracking and scoring in a secure Data Store.",
+            priceBadge: "BETA OFFER — 5 SLOTS", mainPrice: "$530", priceSetup: "Setup Fee (One-time)",
+            monthlyPrice: "+ $215", moSuffix: " / mo", priceMaint: "Maintenance & AI Updates included.",
+            priceExtra: "* Excluding third-party fees (Make, OpenAI).", priceBtn: "START AUTOMATION",
+            inclTitle: "SYSTEM INCLUDES:", incl1: "Email Autopilot", incl2: "WhatsApp AI", incl3: "Data CRM", incl4: "Silence Bot",
+            inclStatus: "INCLUDED", modH: "AI Configuration", modP: "We will contact you within 24h.", lName: "Full Name", lMail: "Work Email", lBiz: "Your Business", modBtn: "SEND",
+            success: "✓ Sent successfully!", loading: "SENDING...", error: "Error, try again."
+        },
+        fr: {
+            navStart: "DÉMARRER →", heroBadge: "SYSTÈME DE CROISSANCE AUTOMATISÉ",
+            heroTitle: "L'Agence est fermée.<br><span style='color: #007AFF'>L'IA travaille.</span>",
+            heroDesc: "Ne perdez plus aucun prospect : notre IA répond instantanément par Email et WhatsApp, 24h/24.",
+            heroBtn: "CONFIGURER MON SYSTÈME", bento1H: "WhatsApp Intelligence", bento1P: "Déploiement de GPT-4o. Le bot reconnaît vos clients et gère les objections complexes.",
+            bento2H: "Email Autopilot", bento2P: "Tri intelligent et rédaction de réponses personnalisées.",
+            bento3H: "Silence Bot", bento3P: "L'IA s'efface dès que vous reprenez la main manuellement.",
+            bento4H: "Data Centric CRM", bento4P: "Tracking et scoring de leads ultra-précis centralisé.",
+            priceBadge: "OFFRE BÊTA — 5 PLACES", mainPrice: "490€", priceSetup: "Mise en place (Unique)",
+            monthlyPrice: "+ 199€", moSuffix: " / mois", priceMaint: "Maintenance & Mises à jour IA incluses.",
+            priceExtra: "* Hors frais tiers (Make, OpenAI).", priceBtn: "LANCER L'AUTOMATISATION",
+            inclTitle: "SYSTÈME INCLUS :", incl1: "Email Autopilot", incl2: "IA WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
+            inclStatus: "INCLUS", modH: "Configuration IA", modP: "Nous vous recontactons sous 24h.", lName: "Nom complet", lMail: "Email professionnel", lBiz: "Votre Business", modBtn: "ENVOYER",
+            success: "✓ Envoyé avec succès !", loading: "ENVOI...", error: "Erreur, réessayez."
+        },
+        es: {
+            navStart: "EMPEZAR →", heroBadge: "SISTEMA DE CRECIMIENTO AUTOMATIZADO",
+            heroTitle: "La agencia está cerrada.<br><span style='color: #007AFF'>La IA está trabajando.</span>",
+            heroDesc: "No pierda ningún cliente: nuestra IA responde al instante por Email y WhatsApp, 24/7.",
+            heroBtn: "CONFIGURAR MI SISTEMA", bento1H: "WhatsApp Inteligente", bento1P: "Despliegue de GPT-4o. El bot reconoce a sus clientes y gestiona objeciones.",
+            bento2H: "Email Autopilot", bento2P: "Clasificación inteligente y redacción de respuestas.",
+            bento3H: "Silence Bot", bento3P: "La IA se detiene en cuanto usted retoma el control manual.",
+            bento4H: "Data Centric CRM", bento4P: "Seguimiento y calificación de leads ultra preciso.",
+            priceBadge: "OFERTA BETA — 5 PLAZAS", mainPrice: "490€", priceSetup: "Configuración (Única)",
+            monthlyPrice: "+ 199€", moSuffix: " / mes", priceMaint: "Mantenimiento y actualizaciones incluidas.",
+            priceExtra: "* Sin incluir gastos de terceros (Make, OpenAI).", priceBtn: "INICIAR AUTOMATIZACIÓN",
+            inclTitle: "SISTEMA INCLUYE:", incl1: "Email Autopilot", incl2: "IA WhatsApp", incl3: "Data CRM", incl4: "Silence Bot",
+            inclStatus: "INCLUIDO", modH: "Configuración IA", modP: "Le contactaremos en menos de 24h.", lName: "Nombre complet", lMail: "Email profesional", lBiz: "Su Negocio", modBtn: "ENVIAR",
+            success: "✓ ¡Enviado con éxito!", loading: "ENVIANDO...", error: "Error, reintente."
+        }
+    };
 
+    let currentLang = 'en';
+
+    function setLang(lang) {
+        currentLang = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + lang).classList.add('active');
+        const t = translations[lang];
+        document.getElementById('nav-start').innerText = t.navStart;
+        document.getElementById('hero-badge').innerText = t.heroBadge;
+        document.getElementById('hero-title').innerHTML = t.heroTitle;
+        document.getElementById('hero-desc').innerText = t.heroDesc;
+        document.getElementById('hero-btn').innerText = t.heroBtn;
+        document.getElementById('bento1-h').innerText = t.bento1H;
+        document.getElementById('bento1-p').innerText = t.bento1P;
+        document.getElementById('bento2-h').innerText = t.bento2H;
+        document.getElementById('bento2-p').innerText = t.bento2P;
+        document.getElementById('bento3-h').innerText = t.bento3H;
+        document.getElementById('bento3-p').innerText = t.bento3P;
+        document.getElementById('bento4-h').innerText = t.bento4H;
+        document.getElementById('bento4-p').innerText = t.bento4P;
+        document.getElementById('price-badge').innerText = t.priceBadge;
+        document.getElementById('main-price').innerText = t.mainPrice;
+        document.getElementById('price-setup').innerText = t.priceSetup;
+        document.getElementById('monthly-price-container').innerHTML = t.monthlyPrice + `<span style="font-size: 13px; font-weight: 400; color: var(--text-dim);">` + t.moSuffix + `</span>`;
+        document.getElementById('price-maint').innerText = t.priceMaint;
+        document.getElementById('price-extra').innerText = t.priceExtra;
+        document.getElementById('price-btn').innerText = t.priceBtn;
+        document.getElementById('incl-title').innerText = t.inclTitle;
+        document.getElementById('incl1').innerText = t.incl1;
+        document.getElementById('incl2').innerText = t.incl2;
+        document.getElementById('incl3').innerText = t.incl3;
+        document.getElementById('incl4').innerText = t.incl4;
+        document.querySelectorAll('.tag-incl').forEach(el => el.innerText = t.inclStatus);
+        document.getElementById('mod-h').innerText = t.modH;
+        document.getElementById('mod-p').innerText = t.modP;
+        document.getElementById('l-name').innerText = t.lName;
+        document.getElementById('l-mail').innerText = t.lMail;
+        document.getElementById('l-biz').innerText = t.lBiz;
+        document.getElementById('mod-btn').innerText = t.modBtn;
+    }
+
+    const modal = document.getElementById('modal');
+    function openModal() { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { 
+        modal.classList.remove('active'); 
+        document.body.style.overflow = 'auto';
+        setTimeout(() => {
+            document.getElementById('contact-form').reset();
+            document.getElementById('form-status').style.display = 'none';
+            document.getElementById('mod-btn').style.display = 'block';
+            document.getElementById('mod-btn').disabled = false;
+        }, 500);
+    }
+    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+
+    const form = document.getElementById("contact-form");
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const status = document.getElementById("form-status");
+        const btn = document.getElementById("mod-btn");
+        const data = new FormData(event.target);
+        const t = translations[currentLang];
+        btn.innerText = t.loading;
+        btn.disabled = true;
+        fetch(event.target.action, {
+            method: form.method,
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                status.innerText = t.success;
+                status.style.display = "block";
+                btn.style.display = "none";
+                setTimeout(closeModal, 2500);
+            } else {
+                status.innerText = t.error;
+                status.style.display = "block";
+                btn.disabled = false;
+                btn.innerText = t.modBtn;
+            }
+        }).catch(error => {
+            status.innerText = t.error;
+            status.style.display = "block";
+            btn.disabled = false;
+            btn.innerText = t.modBtn;
+        });
+    }
+    form.addEventListener("submit", handleSubmit);
+</script>
 </body>
 </html>
